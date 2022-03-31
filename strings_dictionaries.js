@@ -89,19 +89,36 @@ const newInv1 = [
    * need to loop to iterate through array
    * if current array[i] == new array[i]
 **/
-  function updateInventory(newInv, currInv) {
-    for(var i = 0;i<currInv.length; i++) 
-    {
-        if (newInv[i] == currInv[i]){
-            for(key in newInv[i]){
-            newInv.quantity+=currInv.quantity
-            }
-        }
-      else{
-        newInv.push(currInv[i])
+function updateInventory(newInv, currInv) {
+  for(let newItem of newInv){
+    let found = false;
+    for(let currItem of currInv){
+      if(newItem.name == currItem.name){
+        currItem.quantity += newItem.quantity;
+        found = true;
+        break;
       }
     }
-    return newInv
+    if(!found){
+      currInv.push(newItem)
+    }
+  }
+  return currInv
+}
+
+function updateInventory2(newInv, currentInv) {
+  const currInvDict = {};
+
+  for (let item of currentInv) {
+    currInvDict[item.name] = item;
   }
 
-  console.log(updateInventory(newInv1,newInv1));
+  for (let item of newInv) {
+    if (item.name in currInvDict) {
+      currInvDict[item.name].quantity += item.quantity;
+    } else {
+      currentInv.push(item);
+    }
+  }
+  return currentInv;
+}
