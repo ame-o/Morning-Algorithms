@@ -49,13 +49,13 @@ class BST {
         }
         if(this.root === null){
             this.root = node;
-            return this;
+            return;
         }
     // if/else comparing value at node vs value at current
         if (node.val < current.val){
             if(current.left === null){
                 current.left = node;
-                return this;            
+                return;            
             }
             else{
                 current = current.left;
@@ -64,7 +64,7 @@ class BST {
         }else if(node.val > current.val){
             if(current.right === null){
                 current.right = node;
-                return this;            
+                return;            
             }
             else{
                 current = current.right;
@@ -86,3 +86,17 @@ myBST.insert(new BSTNode(5));
 myBST.insert(new BSTNode(20));
 myBST.insert(new BSTNode(12));
 console.log(myBST);
+
+// recursive
+getLargestFromSubtree(current){
+
+}
+
+// iterative with while loop
+getSmallestfromSubTree(){
+
+}
+
+find(val,current){
+
+}
