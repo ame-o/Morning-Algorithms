@@ -140,21 +140,6 @@ class BST {
         }
         }
     }
-    // removeSmallest(current  =  this.root) { 
-    // getSmallestFromSubtree() {
-    //     // create runner
-    //     var runner = this.root;
-
-    //     // return if root is null
-    //     if (!runner) return;
-
-    //     // loop to the left if it exists
-    //     while (runner.left) {
-    //         runner = runner.left;
-    //     }
-    //     // when the while ends, return runner.val
-    //     return runner.val;
-    // }
 
     removeLargest(current = this.root) { 
     if(current == null){
@@ -175,6 +160,48 @@ class BST {
     }
     }
 
+    // ---RECURSIVE OPTIONS---
+    removeSmallestR(current = this.root, prev = null) {
+        if (current.left != null){
+            console.log("moving markers");
+            prev = current;
+            current = current.left;
+            return this.removeSmallest(current, prev);
+        }
+        else if (prev != null){
+            console.log(current, prev);
+            if (current.right != null){
+                prev.left = current.right;
+                current.right = null;
+                
+            }
+            else {
+                console.log(current, prev);
+                prev.left = null;
+            }
+        
+        }
+        return current; 
+    }
+
+// ---------------------
+    removeLargestR(current = this.root, prev = null) { 
+        if (current.right != null){
+            prev = current;
+            current = current.right;
+            return this.removeLargest(current,  prev);
+        }
+        else if (prev != null){
+            if (current.left != null){
+                prev.right = current.left;
+                current.left = null;
+            }
+            else {
+                prev.right = null;
+            }
+        }
+        return current;
+    }
 
     // --- HELPER METHOD for printing the BST ---
     // Logs this tree horizontally with the root on the left.
