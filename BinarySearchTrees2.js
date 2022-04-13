@@ -93,9 +93,16 @@ class BST {
 
     // iterative: using a while loop
     getSmallestFromSubtree(current) { 
+        // create runner
         current = this.root
-        while(this.left!=null){
+        // return if root is null
+        if (!current) return;
+        // loop to the left if it exists
+        while(current.left){
+            current = current.left;
         }
+        // when the while ends, return runner.val
+        return current.val;
     }
 
     // return true or false is val exists within the current tree
