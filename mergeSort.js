@@ -52,7 +52,27 @@ const expectedMerge4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
  */
 function merge(left, right) {
   newArr = [];
-  
+  let i=0;
+  let j =0;
+  while(i<left.length && j < right.length){
+    if(left[i] > right[j]){
+      newArr.push(right[j]);
+      j++;
+    }else{
+      newArr.push(left[i]);
+      i++;
+    }
+    if(i<=left.length){
+      for(let k =i; k <left.lenth; k++){
+        newArr.push(left[k]);
+      }
+      if(j<=right.length){
+        for(let k=j; k < right.length;k++){
+          newArr.push(right[k])
+        }
+      }
+    }
+  }
   return newArr;
 }
 
