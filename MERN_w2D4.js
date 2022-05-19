@@ -1,134 +1,79 @@
-
-  /* 
-  Given an array of objects, a searchFor string, and searchBy key that exists
-  in the object return a new array of only those objects whose value for the
-  given key starts with the given search string.
-  You can assume the key will exist on the object and the value of that key
-  will be a string.
-  Bonus: make the search case insensitive.
-  Bonus: re-write it with functional programming, using built in methods.
-  Bonus: allow the search method to be provided as a parameter, e.g.,
-      string methods: includes, startsWith, endsWith.
-    - you can assume the searchMethod will be valid.
-  This kind of algorithm can be used in react onChange as you type into a
-  search bar to live-filter a list.
+/* 
+  Given an array of objects representing people, and a string representing a bad habit
+  return a "santasNaughtyList" containing the first and last names of all the people who
+  have the matching bad habit so that santa knows how much coal he needs.
+  Bonus: after solving it, make a 2nd solution to practice functional programming with built in methods
 */
-
-const people = [
-    {
-      firstName: "John",
-      lastName: "Doe",
-    },
+const students = [
     {
       firstName: "Jane",
       lastName: "Doe",
-    },
-    {
-      firstName: "Eddy",
-      lastName: "Lee",
+      habits: [
+        "doesn't wash dishes",
+        "falls asleep in lecture",
+        "shows up early",
+      ],
     },
     {
       firstName: "John",
-      lastName: "Fawn",
+      lastName: "Smith",
+      habits: ["shows up late", "washes dishes", "helps peers"],
     },
     {
-      firstName: "Edward",
-      lastName: "Kim",
+      firstName: "Arya",
+      lastName: "Stark",
+      habits: ["doesn't wash dishes", "hoards snacks", "shows up late"],
+    },
+    {
+      firstName: "Jon",
+      lastName: "Snow",
+      habits: ["shows up early", "helps peers", "washes dishes"],
     },
   ];
   
-  const searchFor1 = "Jo";
-  const searchBy1 = "firstName";
-  const expected1 = [
-    {
-      firstName: "John",
-      lastName: "Doe",
-    },
-    {
-      firstName: "John",
-      lastName: "Fawn",
-    },
-  ];
+  const badHabit1 = "doesn't wash dishes";
+  const expected1 = ["Jane Doe", "Arya Stark"];
   
-  const searchFor2 = "ohn";
-  const searchBy2 = "firstName";
-  const expected2 = [];
-  // Explanation: "John" contains "ohn", it does not start with "ohn"
+  const badHabit2 = "shows up late";
+  const expected2 = ["John Smith", "Arya Stark"];
   
-  const searchFor3 = "Do";
-  const searchBy3 = "lastName";
-  const expected3 = [
-    {
-      firstName: "John",
-      lastName: "Doe",
-    },
-    {
-      firstName: "Jane",
-      lastName: "Doe",
-    },
-  ];
-  
-  // Bonus
-  const searchFor4 = "E";
-  const searchBy4 = "lastName";
-  const searchMethod4 = "includes";
-  const expected4 = [
-    {
-      firstName: "John",
-      lastName: "Doe",
-    },
-    {
-      firstName: "Jane",
-      lastName: "Doe",
-    },
-    {
-      firstName: "Eddy",
-      lastName: "Lee",
-    },
-  ];
-  
+  const badHabit3 = "typo";
+  const expected3 = [];
   /**
-   * Filters the given items based on the search criteria using a startsWith
-   * search method.
-   * - Time: O(?).
-   * - Space: O(?).
-   * @param {Array<Object>} items The items to be filtered.
-   * @param {string} searchBy The key to search by.
-   * @param {string} searchFor The value of the given key to search for.
-   * @returns {Array<Objects>} The matched items.
+   * Finds a list of people whose habits contain the given bad habit.
+   * - Time O(?).
+   * - Space O(?).
+   * @typedef {Object} Person
+   * @property {string} firstName
+   * @property {string} lastName
+   * @property {Array<string>} habits
+   * @param {Array<Person>} persons
+   * @param {string} badHabit
+   * @returns {Array<Person>} The people that have the given bad habit.
    */
-  function filterByKeyStartsWith(items, searchFor, searchBy) {
-   let newArr = []
-    // 1. loop through items for each item
-    for (let i = 0; i< items.length; i++){ 
-      // items[i] : each item {firstname: "John", lastname: "Doe"} 
-      if (items[i].hasOwnProperty(searchBy)) { // items[i]["firstname"] = "John"
-        console.log(items[i])
-        console.log(items[i][searchBy])
-        if (items[i][searchBy].startWith(searchFor)) {
-          newArr.push(items[i])
-        }
-      }
-      
+  function santasNaughtyList(persons, badHabit) {
+    let newArr = []
+    for(let i =0; i < persons.length; i++){
+  
+        if(persons[i]["habits"].includes(badHabit)){
+          
+          newArr.push(persons[i]["firstName"] + " " +  persons[i]["lastName"])
+      } 
     }
     return newArr
-    // 2. check whether the item has the searchBy 
-    // 3. check the searchFor with item
-    
-    // searchFor : value  (eg. Jo)
-    // searchBy: key to search (eg. firstName)
-   // Filters the given items based on the search criteria using a startsWith
-  
-  }
-  console.log(filterByKeyStartsWith(people,searchBy1,searchFor1))
-  
-  function filterByKey(items, searchFor, searchBy, searchMethod = "startsWith") {
-   // Filters the given items based on the search criteria using different search method
-   // search method : includes, startsWith, endsWith
-  
   }
   
-  
-  function functionalFilterByKey(items, searchFor, searchBy) {}
-  
-  
+  console.log(santasNaughtyList(students, badHabit1))
+  /**
+   * Finds a list of people whose habits contain the given bad habit.
+   * - Time O(?).
+   * - Space O(?).
+   * @typedef {Object} Person
+   * @property {string} firstName
+   * @property {string} lastName
+   * @property {Array<string>} habits
+   * @param {Array<Person>} persons
+   * @param {string} badHabit
+   * @returns {Array<Person>} The people that have the given bad habit.
+   */
+  function santasNaughtyListFunctional(persons, badHabit) {}
