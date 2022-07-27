@@ -1,4 +1,4 @@
-let emails=["+","leo@email.com","ame@b.com","ame@b.com","amewithoutanything", "@a.com"]
+let emails=["+","leo@email.com","ame@b.com","ame+b@b.com","amewithoutanything", "@a.com"]
 
 function numUniqueEmails(emails) {
     let uniqueEmails = new Set();
@@ -7,7 +7,7 @@ function numUniqueEmails(emails) {
         let email = emails[i]
         //need to review regex docs
         if(!email.startsWith("+")&&email.length>6&&email.includes("@")&&email.endsWith(".com")){
-            if(email.charAt(email.length-5)!="@"&&email.charAt(email.length-5)!=""){
+            if(email.charAt(email.length-5)!="@"&&/[a-z]/.test(email.charAt(email.length-5))){
                 if(!filteredList.includes(email)){
                     filteredList.push(email);
                 }
